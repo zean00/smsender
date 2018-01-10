@@ -1,0 +1,25 @@
+package: github.com/minchao/smsender
+import:
+- package: github.com/Sirupsen/logrus
+  repo: https://github.com/sirupsen/logrus.git
+- package: github.com/aws/aws-sdk-go
+  subpackages:
+  - aws
+  - aws/credentials
+  - aws/session
+  - service/sns
+- package: github.com/carlosdp/twiliogo
+- package: github.com/go-playground/form
+- package: github.com/go-sql-driver/mysql
+- package: github.com/gorilla/mux
+- package: github.com/jmoiron/sqlx
+- package: github.com/rs/cors
+- package: github.com/rs/xid
+- package: github.com/spf13/cobra
+- package: github.com/spf13/viper
+- package: github.com/ttacon/libphonenumber
+- package: github.com/urfave/negroni
+- package: gopkg.in/go-playground/validator.v9
+- package: gopkg.in/njern/gonexmo.v1
+- package: github.com/zean00/trace
+- package: github.com/opentracing/opentracing-go

@@ -16,6 +16,7 @@ import (
 	"github.com/minchao/smsender/smsender/utils"
 	config "github.com/spf13/viper"
 	"github.com/urfave/negroni"
+	"github.com/zean00/trace"
 )
 
 type Sender struct {
@@ -163,9 +164,12 @@ func (s *Sender) RunHTTPServer() {
 	if !config.GetBool("http.enable") {
 		return
 	}
-
+	config.BindEnv("trace_agent")
+	closer, _ := trace.Initialization("smsender", config.GetString("trace_agent"))
+	defer closer.Close()
 	n := negroni.New()
 	n.UseFunc(utils.Logger)
+	n.UseFunc(trace.Tracer)
 	n.UseHandler(s.HTTPRouter)
 
 	addr := config.GetString("http.addr")

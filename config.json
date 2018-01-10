@@ -1,0 +1,47 @@
+{
+    "store": {
+        "name": "sql",
+        "sql": {
+            "driver": "mysql",
+            "dsn": "fintar:password@tcp(localhost:3306)/smsender?parseTime=true&loc=Local",
+            "connection": {
+                "maxOpenConns": 10,
+                "maxIdleConns": 5
+            }
+        }
+    },
+    "http": {
+        "enable": true,
+        "siteURL": "",
+        "addr": ":8080",
+        "tls": false,
+        "tlsCertFile": "",
+        "tlsKeyFile": "",
+        "api": {
+            "cors": {
+                "enable": false,
+                "origins": [],
+                "headers": [
+                    "*"
+                ],
+                "methods": [
+                    "GET",
+                    "POST",
+                    "PUT",
+                    "PATCH",
+                    "DELETE"
+                ],
+                "debug": false
+            }
+        },
+        "web": {
+            "enable": true
+        }
+    },
+    "worker": {
+        "num": 100
+    },
+    "providers": {
+        "dummy": {}
+    }
+}

@@ -24,8 +24,12 @@ type Store struct {
 
 func New(config *viper.Viper) (store.Store, error) {
 	sqlStore := &Store{}
-
-	db, err := sqlx.Connect(config.GetString("driver"), config.GetString("dsn"))
+	config.BindEnv("db_dsn")
+	dsn := config.GetString("db_dsn")
+	if dsn == "" {
+		dsn = config.GetString("dsn")
+	}
+	db, err := sqlx.Connect(config.GetString("driver"), dsn)
 	if err != nil {
 		return nil, err
 	}
