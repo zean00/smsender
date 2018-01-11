@@ -1,5 +1,5 @@
 hash: 3deac7ca92a69282f16f501a29eba5dbc334f01b259156b81e63cb993adab127
-updated: 2018-01-10T15:13:06.879913+07:00
+updated: 2018-01-11T06:45:20.920991+07:00
 imports:
 - name: github.com/apache/thrift
   version: b2a4d4ae21c789b689dd162deb819665567f481c
@@ -169,7 +169,7 @@ imports:
 - name: github.com/valyala/fasttemplate
   version: dcecefd839c4193db0d35b88ec65b4c12d360ab0
 - name: github.com/zean00/trace
-  version: 17594b64ce2ef7c7df1d11e06f02f0e92a5b0868
+  version: 670599cc6b9cd75c331c0774e8e04ca160a72bbc
 - name: golang.org/x/crypto
   version: 2faea1465de239e4babd8f5905cc25b781712442
   subpackages:
