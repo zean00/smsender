@@ -3,7 +3,7 @@
         "name": "sql",
         "sql": {
             "driver": "mysql",
-            "dsn": "fintar:password@tcp(localhost:3306)/smsender?parseTime=true&loc=Local",
+            "dsn": "user:password@tcp(localhost:3306)/dbname?parseTime=true&loc=Local",
             "connection": {
                 "maxOpenConns": 10,
                 "maxIdleConns": 5
