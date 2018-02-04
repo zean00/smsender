@@ -6,6 +6,8 @@ MYSQL_PASSWORD=${MYSQL_PASSWORD:-smsender_password}
 MYSQL_HOST=${MYSQL_HOST:-db}
 MYSQL_PORT=${MYSQL_PORT:-3306}
 MYSQL_DATABASE=${MYSQL_DATABASE:-smsender}
+NEXMO_KEY=${NEXMO_KEY:-key}
+NEXMO_SECRET=${NEXMO_SECRET:-secret}
 
 echo "Configure config.yml"
 if [ ! -f ${config} ]
@@ -16,6 +18,8 @@ then
   sed -Ei "s/MYSQL_HOST/$MYSQL_HOST/" ${config}
   sed -Ei "s/MYSQL_PORT/$MYSQL_PORT/" ${config}
   sed -Ei "s/MYSQL_DATABASE/$MYSQL_DATABASE/" ${config}
+  sed -Ei "s/NEXMO_KEY/$NEXMO_KEY/" ${config}
+  sed -Ei "s/NEXMO_SECRET/$NEXMO_SECRET/" ${config}
   echo OK
 else
   echo SKIP
