@@ -9,7 +9,31 @@
 
 [[projects]]
   name = "github.com/aws/aws-sdk-go"
-  packages = ["aws","aws/awserr","aws/awsutil","aws/client","aws/client/metadata","aws/corehandlers","aws/credentials","aws/credentials/ec2rolecreds","aws/credentials/endpointcreds","aws/credentials/stscreds","aws/defaults","aws/ec2metadata","aws/endpoints","aws/request","aws/session","aws/signer/v4","private/protocol","private/protocol/query","private/protocol/query/queryutil","private/protocol/rest","private/protocol/xml/xmlutil","service/sns","service/sts"]
+  packages = [
+    "aws",
+    "aws/awserr",
+    "aws/awsutil",
+    "aws/client",
+    "aws/client/metadata",
+    "aws/corehandlers",
+    "aws/credentials",
+    "aws/credentials/ec2rolecreds",
+    "aws/credentials/endpointcreds",
+    "aws/credentials/stscreds",
+    "aws/defaults",
+    "aws/ec2metadata",
+    "aws/endpoints",
+    "aws/request",
+    "aws/session",
+    "aws/signer/v4",
+    "private/protocol",
+    "private/protocol/query",
+    "private/protocol/query/queryutil",
+    "private/protocol/rest",
+    "private/protocol/xml/xmlutil",
+    "service/sns",
+    "service/sts"
+  ]
   revision = "0dbc446aca87aebb6e0a24509b59bafc0e3ec0ae"
   version = "v1.8.19"
 
@@ -18,6 +42,12 @@
   name = "github.com/carlosdp/twiliogo"
   packages = ["."]
   revision = "b26045ebb9d15c9296ba59d94687aaf7d2080905"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/codahale/hdrhistogram"
+  packages = ["."]
+  revision = "3a0bb77429bd3a61596f5e8a3172445844342120"
 
 [[projects]]
   name = "github.com/davecgh/go-spew"
@@ -42,7 +72,10 @@
 
 [[projects]]
   name = "github.com/go-playground/locales"
-  packages = [".","currency"]
+  packages = [
+    ".",
+    "currency"
+  ]
   revision = "273913d3b2ff7127452603d55dd3f6f888e4f268"
   version = "v0.10.3"
 
@@ -74,7 +107,17 @@
 
 [[projects]]
   name = "github.com/hashicorp/hcl"
-  packages = [".","hcl/ast","hcl/parser","hcl/scanner","hcl/strconv","hcl/token","json/parser","json/scanner","json/token"]
+  packages = [
+    ".",
+    "hcl/ast",
+    "hcl/parser",
+    "hcl/scanner",
+    "hcl/strconv",
+    "hcl/token",
+    "json/parser",
+    "json/scanner",
+    "json/token"
+  ]
   revision = "eb6f65b2d77ed5078887f960ff570fbddbbeb49d"
 
 [[projects]]
@@ -91,8 +134,26 @@
 
 [[projects]]
   name = "github.com/jmoiron/sqlx"
-  packages = [".","reflectx"]
+  packages = [
+    ".",
+    "reflectx"
+  ]
   revision = "cac998c4f0959c19c638c523e374fa8e4e0bcfe3"
+
+[[projects]]
+  name = "github.com/labstack/echo"
+  packages = ["."]
+  revision = "1abaa3049251d17932e4313c2d6165073fd07fd8"
+  version = "v3.3.6"
+
+[[projects]]
+  name = "github.com/labstack/gommon"
+  packages = [
+    "color",
+    "log"
+  ]
+  revision = "2a618302b929cc20862dda3aa6f02f64dbe740dd"
+  version = "v0.2.7"
 
 [[projects]]
   name = "github.com/magiconair/properties"
@@ -100,9 +161,37 @@
   revision = "b3b15ef068fd0b17ddf408a23669f20811d194d2"
 
 [[projects]]
+  name = "github.com/mattn/go-colorable"
+  packages = ["."]
+  revision = "167de6bfdfba052fa6b2d3664c8f5272e23c9072"
+  version = "v0.0.9"
+
+[[projects]]
+  name = "github.com/mattn/go-isatty"
+  packages = ["."]
+  revision = "6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c"
+  version = "v0.0.4"
+
+[[projects]]
   name = "github.com/mitchellh/mapstructure"
   packages = ["."]
   revision = "bfdb1a85537d60bc7e954e600c250219ea497417"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/opentracing-contrib/go-stdlib"
+  packages = ["nethttp"]
+  revision = "07a764486eb10927e8cf38337918a40d430524ee"
+
+[[projects]]
+  name = "github.com/opentracing/opentracing-go"
+  packages = [
+    ".",
+    "ext",
+    "log"
+  ]
+  revision = "1949ddbfd147afd4d964a9f00b24eb291e0e7c38"
+  version = "v1.0.2"
 
 [[projects]]
   name = "github.com/pelletier/go-buffruneio"
@@ -114,6 +203,12 @@
   name = "github.com/pelletier/go-toml"
   packages = ["."]
   revision = "439fbba1f887c286024370cb4f281ba815c4c7d7"
+
+[[projects]]
+  name = "github.com/pkg/errors"
+  packages = ["."]
+  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
+  version = "v0.8.0"
 
 [[projects]]
   name = "github.com/pmezard/go-difflib"
@@ -140,7 +235,10 @@
 
 [[projects]]
   name = "github.com/spf13/afero"
-  packages = [".","mem"]
+  packages = [
+    ".",
+    "mem"
+  ]
   revision = "72b31426848c6ef12a7a8e216708cb0d1530f074"
 
 [[projects]]
@@ -176,7 +274,10 @@
 
 [[projects]]
   name = "github.com/stretchr/testify"
-  packages = ["assert","mock"]
+  packages = [
+    "assert",
+    "mock"
+  ]
   revision = "2402e8e7a02fc811447d11f881aa9746cdc57983"
 
 [[projects]]
@@ -190,9 +291,65 @@
   revision = "7cae2148c8b6ea3d01e4b2e3f1cc9e7136bb1bcf"
 
 [[projects]]
+  name = "github.com/uber/jaeger-client-go"
+  packages = [
+    ".",
+    "config",
+    "internal/baggage",
+    "internal/baggage/remote",
+    "internal/spanlog",
+    "internal/throttler",
+    "internal/throttler/remote",
+    "log",
+    "rpcmetrics",
+    "thrift",
+    "thrift-gen/agent",
+    "thrift-gen/baggage",
+    "thrift-gen/jaeger",
+    "thrift-gen/sampling",
+    "thrift-gen/zipkincore",
+    "utils"
+  ]
+  revision = "b043381d944715b469fd6b37addfd30145ca1758"
+  version = "v2.14.0"
+
+[[projects]]
+  name = "github.com/uber/jaeger-lib"
+  packages = ["metrics"]
+  revision = "ed3a127ec5fef7ae9ea95b01b542c47fbd999ce5"
+  version = "v1.5.0"
+
+[[projects]]
   name = "github.com/urfave/negroni"
   packages = ["."]
   revision = "46eece4d3b43dd330e141b20adf0ce9b2b35ba53"
+
+[[projects]]
+  name = "github.com/valyala/bytebufferpool"
+  packages = ["."]
+  revision = "e746df99fe4a3986f4d4f79e13c1e0117ce9c2f7"
+  version = "v1.0.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/valyala/fasttemplate"
+  packages = ["."]
+  revision = "dcecefd839c4193db0d35b88ec65b4c12d360ab0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/zean00/trace"
+  packages = ["."]
+  revision = "ff626467079fcbb40756a03ec926a74d998b688c"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/crypto"
+  packages = [
+    "acme",
+    "acme/autocert"
+  ]
+  revision = "0e37d006457bf46f9e6692014ba72ef82c33022c"
 
 [[projects]]
   name = "golang.org/x/net"
@@ -206,7 +363,14 @@
 
 [[projects]]
   name = "golang.org/x/text"
-  packages = ["internal/gen","internal/triegen","internal/ucd","transform","unicode/cldr","unicode/norm"]
+  packages = [
+    "internal/gen",
+    "internal/triegen",
+    "internal/ucd",
+    "transform",
+    "unicode/cldr",
+    "unicode/norm"
+  ]
   revision = "f72d8390a633d5dfb0cc84043294db9f6c935756"
 
 [[projects]]
@@ -229,6 +393,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "7982e5ae40b02f4a656548a9e3770b443df5087306c864612230a6060866e2a9"
+  inputs-digest = "aebd3c7405c2a00e4971ff16ad8c25a19e4173a19fa80c75114b03f8850e9fdd"
   solver-name = "gps-cdcl"
   solver-version = 1
