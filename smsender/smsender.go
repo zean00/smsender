@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"net/url"
 	"sync"
+	"time"
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/gorilla/mux"
@@ -16,7 +17,11 @@ import (
 	"github.com/minchao/smsender/smsender/utils"
 	config "github.com/spf13/viper"
 	"github.com/urfave/negroni"
-	"github.com/zean00/trace"
+	"go.opencensus.io/exporter/jaeger"
+	"go.opencensus.io/exporter/prometheus"
+	"go.opencensus.io/plugin/ochttp"
+	"go.opencensus.io/stats/view"
+	"go.opencensus.io/trace"
 )
 
 type Sender struct {
@@ -101,6 +106,7 @@ func (s *Sender) GetSiteURL() *url.URL {
 func (s *Sender) Run() {
 	s.InitWebhooks()
 	s.InitWorkers()
+	s.InitTracer()
 	go s.RunHTTPServer()
 
 	select {}
@@ -164,12 +170,12 @@ func (s *Sender) RunHTTPServer() {
 	if !config.GetBool("http.enable") {
 		return
 	}
-	config.BindEnv("trace_agent")
-	closer, _ := trace.Initialization("smsender", config.GetString("trace_agent"))
-	defer closer.Close()
+	//closer, _ := trace.Initialization("smsender", config.GetString("trace_agent"))
+	//defer closer.Close()
 	n := negroni.New()
 	n.UseFunc(utils.Logger)
-	n.UseFunc(trace.Tracer)
+	n.UseFunc(censusMiddleware)
+	//n.UseFunc(trace.Tracer)
 	n.UseHandler(s.HTTPRouter)
 
 	addr := config.GetString("http.addr")
@@ -183,4 +189,43 @@ func (s *Sender) RunHTTPServer() {
 		log.Infof("Listening for HTTP on %s", addr)
 		log.Fatal(http.ListenAndServe(addr, n))
 	}
+}
+
+//InitTracer tracer
+func (s *Sender) InitTracer() {
+	// Register stats and trace exporters to export the collected data.
+	config.SetDefault("trace_agent", "localhost:5775")
+	config.BindEnv("trace_agent")
+	je, err := jaeger.NewExporter(jaeger.Options{
+		AgentEndpoint: config.GetString("trace_agent"),
+		ServiceName:   "smsender",
+	})
+	if err != nil {
+		log.Fatalf("Failed to create the Jaeger exporter: %v", err)
+	}
+
+	// And now finally register it as a Trace Exporter
+	trace.RegisterExporter(je)
+
+	pe, err := prometheus.NewExporter(prometheus.Options{
+		Namespace: "smsender",
+	})
+
+	if err != nil {
+		log.Fatalf("Failed to create Prometheus exporter: %v", err)
+	}
+	view.RegisterExporter(pe)
+
+	// Always trace for this demo. In a production application, you should
+	// configure this to a trace.ProbabilitySampler set at the desired
+	// probability.
+	trace.ApplyConfig(trace.Config{DefaultSampler: trace.AlwaysSample()})
+
+	// Report stats at every second.
+	view.SetReportingPeriod(1 * time.Second)
+}
+
+func censusMiddleware(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
+	h := &ochttp.Handler{Handler: next}
+	h.ServeHTTP(w, r)
 }
