@@ -1,7 +1,7 @@
 package api
 
 import (
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 	"github.com/gorilla/mux"
 	"github.com/minchao/smsender/smsender"
 	"github.com/minchao/smsender/smsender/model"

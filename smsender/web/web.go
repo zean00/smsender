@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strings"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 	"github.com/minchao/smsender/smsender"
 	config "github.com/spf13/viper"
 	"github.com/urfave/negroni"

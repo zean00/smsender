@@ -6,7 +6,7 @@ import (
 	"syscall"
 	"time"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 	"github.com/minchao/smsender/smsender"
 	"github.com/minchao/smsender/smsender/api"
 	"github.com/minchao/smsender/smsender/web"

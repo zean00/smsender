@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 	"github.com/minchao/smsender/smsender"
 	"github.com/minchao/smsender/smsender/model"
 	"github.com/minchao/smsender/smsender/utils"

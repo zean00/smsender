@@ -1,10 +1,8 @@
 FROM lushdigital/docker-golang-dep:latest as builder
 
-RUN mkdir -p /go/src/github.com/minchao && \
-	cd /go/src/github.com/minchao && \
-	git clone https://github.com/zean00/smsender.git --depth 1 && \
-	cd smsender && \
-	dep ensure -v
+RUN mkdir -p /go/src/github.com/minchao/smsender
+
+COPY ./ /go/src/github.com/minchao/smsender/
 
 RUN	cd /go/src/github.com/minchao/smsender && \
 	env CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -ldflags '-w' -o bin/smsender

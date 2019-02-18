@@ -11,6 +11,7 @@ import (
 	_ "github.com/minchao/smsender/smsender/providers/aws"
 	_ "github.com/minchao/smsender/smsender/providers/dummy"
 	_ "github.com/minchao/smsender/smsender/providers/nexmo"
+	_ "github.com/minchao/smsender/smsender/providers/rajasms"
 	_ "github.com/minchao/smsender/smsender/providers/twilio"
 )
 

@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 	"github.com/gorilla/mux"
 	"github.com/minchao/smsender/smsender/model"
 	"github.com/minchao/smsender/smsender/plugin"

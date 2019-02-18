@@ -38,3 +38,9 @@ providers:
     secret: "NEXMO_SECRET"
     webhook:
       enable: true
+  rajasms:
+    key: "RAJASMS_KEY"
+    server: "RAJASMS_SERVER"
+    webhook:
+      enable: RAJASMS_WEBHOOK_ENABLE
+      server: "RAJASMS_WEBHOOK_SERVER"

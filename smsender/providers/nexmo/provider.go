@@ -3,7 +3,7 @@ package nexmo
 import (
 	"net/http"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 	"github.com/minchao/smsender/smsender/model"
 	"github.com/minchao/smsender/smsender/plugin"
 	"github.com/minchao/smsender/smsender/utils"

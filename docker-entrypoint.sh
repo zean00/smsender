@@ -8,6 +8,10 @@ MYSQL_PORT=${MYSQL_PORT:-3306}
 MYSQL_DATABASE=${MYSQL_DATABASE:-smsender}
 NEXMO_KEY=${NEXMO_KEY:-key}
 NEXMO_SECRET=${NEXMO_SECRET:-secret}
+RAJASMS_KEY=${RAJASMS_KEY:-key}
+RAJASMS_SERVER=${RAJASMS_SERVER:-localhost}
+RAJASMS_WEBHOOK_ENABLE=${RAJASMS_WEBHOOK_ENABLE:-false}
+RAJASMS_WEBHOOK_SERVER=${RAJASMS_WEBHOOK_SERVER:-localhost}
 
 echo "Configure config.yml"
 if [ ! -f ${config} ]
@@ -20,6 +24,10 @@ then
   sed -Ei "s/MYSQL_DATABASE/$MYSQL_DATABASE/" ${config}
   sed -Ei "s/NEXMO_KEY/$NEXMO_KEY/" ${config}
   sed -Ei "s/NEXMO_SECRET/$NEXMO_SECRET/" ${config}
+  sed -Ei "s/RAJASMS_KEY/$RAJASMS_KEY/" ${config}
+  sed -Ei "s/RAJASMS_SERVER/$RAJASMS_SERVER/" ${config}
+  sed -Ei "s/RAJASMS_WEBHOOK_ENABLE/$RAJASMS_WEBHOOK_ENABLE/" ${config}
+  sed -Ei "s/RAJASMS_WEBHOOK_SERVER/$RAJASMS_WEBHOOK_SERVER/" ${config}
   echo OK
 else
   echo SKIP

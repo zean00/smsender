@@ -4,7 +4,7 @@ import (
 	"errors"
 	"net/http"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 	twilio "github.com/carlosdp/twiliogo"
 	"github.com/minchao/smsender/smsender/model"
 	"github.com/minchao/smsender/smsender/plugin"

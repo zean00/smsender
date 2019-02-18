@@ -5,14 +5,8 @@
   branch = "master"
   name = "git.apache.org/thrift.git"
   packages = ["lib/go/thrift"]
-  revision = "7ac9e43ebcc4e65b4150aea83e85af19e22964a1"
+  revision = "c6b019affd5f6b9598069e3d5d3f78dec035cb1a"
   source = "github.com/apache/thrift"
-
-[[projects]]
-  name = "github.com/Sirupsen/logrus"
-  packages = ["."]
-  revision = "ba1b36c82c5e05c4f912a88eab0dcd91a171688f"
-  version = "v0.11.5"
 
 [[projects]]
   name = "github.com/aws/aws-sdk-go"
@@ -48,8 +42,8 @@
     "service/sns",
     "service/sts"
   ]
-  revision = "103cb51d5be1d3e4735da3ed250f27df6c73fadf"
-  version = "v1.16.10"
+  revision = "10ce3494cb43d3d8dd58b4e5fa40edc2136bf96b"
+  version = "v1.16.36"
 
 [[projects]]
   branch = "master"
@@ -78,8 +72,8 @@
 [[projects]]
   name = "github.com/go-playground/form"
   packages = ["."]
-  revision = "572fa772c66ec5e3606a1a548406e10fb62de317"
-  version = "v3.1.3"
+  revision = "c78c4d65be236fc54add020b980125b40aeb6386"
+  version = "v3.1.4"
 
 [[projects]]
   name = "github.com/go-playground/locales"
@@ -109,16 +103,10 @@
   version = "v1.2.0"
 
 [[projects]]
-  name = "github.com/gorilla/context"
-  packages = ["."]
-  revision = "08b5f424b9271eedf6f9f0ce86cb9396ed337a42"
-  version = "v1.1.1"
-
-[[projects]]
   name = "github.com/gorilla/mux"
   packages = ["."]
-  revision = "e3702bed27f0d39777b0b37b664b6280e8ef8fbf"
-  version = "v1.6.2"
+  revision = "a7962380ca08b5a188038c69871b8d3fbdf31e89"
+  version = "v1.7.0"
 
 [[projects]]
   name = "github.com/hashicorp/hcl"
@@ -156,6 +144,12 @@
   ]
   revision = "d161d7a76b5661016ad0b085869f77fd410f3e6a"
   version = "v1.2.0"
+
+[[projects]]
+  name = "github.com/konsorten/go-windows-terminal-sequences"
+  packages = ["."]
+  revision = "5c8c8bd35d3832f5d134ae1e1e375b69a4d25242"
+  version = "v1.0.1"
 
 [[projects]]
   name = "github.com/leodido/go-urn"
@@ -207,17 +201,17 @@
   branch = "master"
   name = "github.com/prometheus/client_model"
   packages = ["go"]
-  revision = "5c3871d89910bfb32f5fcab2aa4b9ec68e65a99f"
+  revision = "fd36f4220a901265f90734c3183c5f0c91daa0b8"
 
 [[projects]]
-  branch = "master"
   name = "github.com/prometheus/common"
   packages = [
     "expfmt",
     "internal/bitbucket.org/ww/goautoneg",
     "model"
   ]
-  revision = "67670fe90761d7ff18ec1d640135e53b9198328f"
+  revision = "cfeb6f9992ffa54aaa4f2170ade4067ee478b250"
+  version = "v0.2.0"
 
 [[projects]]
   branch = "master"
@@ -228,7 +222,7 @@
     "nfs",
     "xfs"
   ]
-  revision = "1dc9a6cbc91aacc3e8b2d63db4d2e957a5394ac4"
+  revision = "f8d8b3f739bd91a7c0462cb55235ef63c79c9abc"
 
 [[projects]]
   name = "github.com/rs/cors"
@@ -243,13 +237,19 @@
   version = "v1.2.1"
 
 [[projects]]
+  name = "github.com/sirupsen/logrus"
+  packages = ["."]
+  revision = "e1e72e9de974bd926e5c56f83753fba2df402ce5"
+  version = "v1.3.0"
+
+[[projects]]
   name = "github.com/spf13/afero"
   packages = [
     ".",
     "mem"
   ]
-  revision = "a5d6946387efe7d64d09dcba68cdd523dc1273a3"
-  version = "v1.2.0"
+  revision = "f4711e4db9e9a1d3887343acb72b2bbfc2f686f5"
+  version = "v1.2.1"
 
 [[projects]]
   name = "github.com/spf13/cast"
@@ -293,8 +293,8 @@
     "assert",
     "mock"
   ]
-  revision = "f35b8ab0b5a2cef36673838d662e249dd9c94686"
-  version = "v1.2.2"
+  revision = "ffdc059bfe9ce6a4e144ba849dbedead332c6053"
+  version = "v1.3.0"
 
 [[projects]]
   branch = "master"
@@ -335,20 +335,29 @@
     "trace/propagation",
     "trace/tracestate"
   ]
-  revision = "b7bf3cdb64150a8c8c53b769fdeb2ba581bd4d4b"
-  version = "v0.18.0"
+  revision = "2b5032d79456124f42db6b7eb19ac6c155449dc2"
+  version = "v0.19.0"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/crypto"
+  packages = ["ssh/terminal"]
+  revision = "74369b46fc6756741c016591724fd1cb8e26845f"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/sync"
   packages = ["semaphore"]
-  revision = "42b317875d0fa942474b76e1b46a6060d720ae6e"
+  revision = "37e7f081c4d4c64e13b10787722085407fe5d15f"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/sys"
-  packages = ["unix"]
-  revision = "b00e65af1da0681cde6c8227839a0ca53bbf16bb"
+  packages = [
+    "unix",
+    "windows"
+  ]
+  revision = "d0b11bdaac8adb652bff00e49bcacf992835621a"
 
 [[projects]]
   name = "golang.org/x/text"
@@ -367,7 +376,7 @@
   branch = "master"
   name = "google.golang.org/api"
   packages = ["support/bundler"]
-  revision = "65a46cafb132eff435c7d1e0f439cc73c8eebb85"
+  revision = "77d02fa16783d31ba92e59fc0a888a45635f433e"
 
 [[projects]]
   name = "google.golang.org/appengine"
@@ -378,8 +387,8 @@
 [[projects]]
   name = "gopkg.in/go-playground/validator.v9"
   packages = ["."]
-  revision = "0277b12d53df79c9dbf7311cb07fa9c81ed621bb"
-  version = "v9.24.0"
+  revision = "b199fa0642d29caca62b6a99d65cc981ba5edc3b"
+  version = "v9.27.0"
 
 [[projects]]
   name = "gopkg.in/njern/gonexmo.v1"
@@ -396,6 +405,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "37b48d52cfb7d667fe1c1876a29d95acc0a5c3946ce6674fa3dfc84aff125aec"
+  inputs-digest = "974669be80f3f9845270bb11a9e9d205ef3f44003c710aaadaf47c9d3f7de43a"
   solver-name = "gps-cdcl"
   solver-version = 1
