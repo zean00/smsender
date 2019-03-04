@@ -41,6 +41,7 @@ providers:
   rajasms:
     key: "RAJASMS_KEY"
     server: "RAJASMS_SERVER"
+    masked: RAJASMS_MASKED
     webhook:
       enable: RAJASMS_WEBHOOK_ENABLE
       server: "RAJASMS_WEBHOOK_SERVER"

@@ -18,7 +18,8 @@ import (
 )
 
 const name = "rajasms"
-const path = "/sms/api_sms_masking_send_json.php"
+const mask_path = "/sms/api_sms_masking_send_json.php"
+const reg_path = "/sms/api_sms_reguler_send_json.php"
 
 func init() {
 	plugin.RegisterProvider(name, Plugin)
@@ -30,6 +31,7 @@ func Plugin(config *viper.Viper) (model.Provider, error) {
 		Server:        config.GetString("server"),
 		WebhookServer: config.GetString("webhook.server"),
 		EnableWebhook: config.GetBool("webhook.enable"),
+		Masked:        config.GetBool("masked"),
 	}.New(name)
 }
 
@@ -40,6 +42,7 @@ type Provider struct {
 	webhookPath   string
 	APIKey        string
 	WebhookServer string
+	Masked        bool
 }
 
 type Config struct {
@@ -48,6 +51,7 @@ type Config struct {
 	Server        string
 	WebhookServer string
 	EnableWebhook bool
+	Masked        bool
 }
 
 type RajaRequest struct {
@@ -104,6 +108,7 @@ func (c Config) New(name string) (*Provider, error) {
 		webhookPath:   "/webhooks/" + name,
 		WebhookServer: c.WebhookServer,
 		APIKey:        c.Key,
+		Masked:        c.Masked,
 	}, nil
 }
 
@@ -137,6 +142,10 @@ func (b Provider) Send(message model.Message) *model.MessageResponse {
 		return nil
 	}
 	bp := bytes.NewBuffer(o)
+	path := reg_path
+	if b.Masked {
+		path = mask_path
+	}
 	url := b.server + path
 	//log.Debug("SMS Message ", string(o))
 	log.Info("URL ", url)
