@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/minchao/smsender/smsender/model"
 	"github.com/minchao/smsender/smsender/plugin"
@@ -18,23 +19,32 @@ import (
 )
 
 const name = "rajasms"
-const mask_path = "/sms/api_sms_masking_send_json.php"
-const reg_path = "/sms/api_sms_reguler_send_json.php"
+const regular = "regular"
+const mask = "mask"
+const otp = "otp"
+
+var modePath = map[string]string{
+	regular: "/sms/api_sms_reguler_send_json.php",
+	mask:    "/sms/api_sms_masking_send_json.php",
+	otp:     "/sms/api_sms_otp_send_json.php",
+}
 
 func init() {
 	plugin.RegisterProvider(name, Plugin)
 }
 
+//Plugin init
 func Plugin(config *viper.Viper) (model.Provider, error) {
 	return Config{
 		Key:           config.GetString("key"),
 		Server:        config.GetString("server"),
 		WebhookServer: config.GetString("webhook.server"),
 		EnableWebhook: config.GetBool("webhook.enable"),
-		Masked:        config.GetBool("masked"),
+		Mode:          config.GetString("mode"),
 	}.New(name)
 }
 
+//Provider model
 type Provider struct {
 	name          string
 	server        string
@@ -42,56 +52,66 @@ type Provider struct {
 	webhookPath   string
 	APIKey        string
 	WebhookServer string
-	Masked        bool
+	Mode          string
 }
 
+//Config model
 type Config struct {
 	Key           string
 	Secret        string
 	Server        string
 	WebhookServer string
 	EnableWebhook bool
-	Masked        bool
+	Mode          string
 }
 
+//RajaRequest model
 type RajaRequest struct {
 	APIkey      string        `json:"apikey"`
 	CallbackURL string        `json:"callbackurl"`
 	DataPacket  []RajaMessage `json:"datapacket"`
 }
 
+//RajaMessage model
 type RajaMessage struct {
 	Number      string `json:"number"`
 	Message     string `json:"message"`
 	SendingTime string `json:"sendingdatetime"`
 }
 
+//RajaResponse model
 type RajaResponse struct {
 	SendingResponse []SendingResponse `json:"sending_respon"`
 }
 
+//SendingResponse model
 type SendingResponse struct {
 	GlobalStatus     int              `json:"globalstatus"`
 	GlobalStatusText string           `json:"globalstatustext"`
 	DataPacket       []ResponsePacket `json:"datapacket"`
 }
 
+//ResponsePacket model
 type ResponsePacket struct {
 	Packet PacketObject `json:"packet"`
 }
 
+//PacketObject model
 type PacketObject struct {
 	Number            string `json:"number"`
 	SendingID         uint64 `json:"sendingid"`
 	SendingStatus     int    `json:"sendingstatus"`
 	SendingStatusText string `json:"sendingstatustext"`
+	SenderName        string `json:"sendername"`
 	Price             int    `json:"price"`
 }
 
+//CallbackResponse model
 type CallbackResponse struct {
 	SendingReponse []DeliveryResponse `json:"status_respon"`
 }
 
+//DeliveryResponse model
 type DeliveryResponse struct {
 	SendingID          uint64 `json:"sendingid"`
 	Number             string `json:"number"`
@@ -99,7 +119,7 @@ type DeliveryResponse struct {
 	DeliveryStatusText string `json:"deliverystatustext"`
 }
 
-// New creates Nexmo Provider.
+// New creates RajaSms Provider.
 func (c Config) New(name string) (*Provider, error) {
 	return &Provider{
 		name:          name,
@@ -108,14 +128,16 @@ func (c Config) New(name string) (*Provider, error) {
 		webhookPath:   "/webhooks/" + name,
 		WebhookServer: c.WebhookServer,
 		APIKey:        c.Key,
-		Masked:        c.Masked,
+		Mode:          strings.ToLower(c.Mode),
 	}, nil
 }
 
+//Name return provider name
 func (b Provider) Name() string {
 	return b.name
 }
 
+//Send message
 func (b Provider) Send(message model.Message) *model.MessageResponse {
 	ctx, span := trace.StartSpan(context.Background(), "Smsender.rajasms.send")
 	defer span.End()
@@ -142,9 +164,9 @@ func (b Provider) Send(message model.Message) *model.MessageResponse {
 		return nil
 	}
 	bp := bytes.NewBuffer(o)
-	path := reg_path
-	if b.Masked {
-		path = mask_path
+	path := modePath[b.Mode]
+	if path == "" {
+		path = modePath[regular]
 	}
 	url := b.server + path
 	//log.Debug("SMS Message ", string(o))
